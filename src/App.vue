@@ -1,15 +1,18 @@
 <template>
   <div id="app">
+    <Header/>
     <QuestionBox/>
   </div>
 </template>
 
 <script>
 import QuestionBox from "@/components/QuestionBox";
+import Header from "@/components/Header";
 
 export default {
   name: 'app',
   components: {
+    Header,
     QuestionBox
   }
 }
