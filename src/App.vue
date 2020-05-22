@@ -1,12 +1,18 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <QuestionBox/>
   </div>
 </template>
 
 <script>
+import QuestionBox from "@/components/QuestionBox";
 
+export default {
+  name: 'app',
+  components: {
+    QuestionBox
+  }
+}
 </script>
 
 <style>
