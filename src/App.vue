@@ -4,10 +4,14 @@
     <b-container>
       <b-row>
         <b-col sm="6" offset="3">
-          <QuestionBox/>
+          <QuestionBox
+                  v-if="questions.length"
+                  :currentQuestion="questions[index]"
+                  :next="next"
+          />
         </b-col>
       </b-row>
-    </b-container>    
+    </b-container>
   </div>
 </template>
 
@@ -24,20 +28,26 @@
     },
     data() {
       return {
-        questions: []
+        questions: [],
+        index: 0
+      }
+    },
+    methods: {
+      next() {
+        this.index++
       }
     },
     mounted: function () {
       axios.get('https://opentdb.com/api.php?amount=10&category=27&type=multiple')
-      .then((response) => {
-        return response.data
-      })
-      .then((resData) => {
-        this.questions = resData.results;
-      })
-      .catch(error => {
-        console.log(error)
-      });
+          .then((response) => {
+            return response.data
+          })
+          .then((resData) => {
+            this.questions = resData.results;
+          })
+          .catch(error => {
+            console.log(error)
+          });
     }
   }
 </script>
