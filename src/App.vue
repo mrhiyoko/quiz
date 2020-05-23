@@ -1,22 +1,25 @@
 <template>
   <div id="app">
+    <Header/>
     <b-container>
       <b-row>
         <b-col sm="6" offset="3">
           <QuestionBox/>
         </b-col>
       </b-row>
-    </b-container>
+    </b-container>    
   </div>
 </template>
 
 <script>
+  import Header from "@/components/Header";
   import QuestionBox from "@/components/QuestionBox";
   import axios from 'axios';
 
   export default {
     name: 'app',
     components: {
+      Header,
       QuestionBox
     },
     data() {
