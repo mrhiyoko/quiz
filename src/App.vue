@@ -27,10 +27,10 @@
     mounted: function () {
       axios.get('https://opentdb.com/api.php?amount=10&category=27&type=multiple')
       .then((response) => {
-        console.log(response.data)
+        return response.data
       })
-      .then((data) => {
-        this.questions = data.results;
+      .then((resData) => {
+        this.questions = resData.results;
       })
       .catch(error => {
         console.log(error)
