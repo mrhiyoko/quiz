@@ -11,8 +11,9 @@
         <b-list-group-item
                 v-for="(answer, index) in answers"
                 :key="index"
-                @click="selectAnswer(index)"
+                @click.prevent="selectAnswer(index)"
                 :class="[selectedIndex === index ? 'selected' : '']"
+
         >
           {{ answer }}
         </b-list-group-item>
@@ -54,7 +55,7 @@
     },
     methods: {
       selectAnswer(index) {
-        this.selectedAnswer = index
+        this.selectedIndex = index
       },
       shuffleAnswers() {
         let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
