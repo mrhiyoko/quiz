@@ -13,13 +13,18 @@
                 :key="index"
                 @click.prevent="selectAnswer(index)"
                 :class="[selectedIndex === index ? 'selected' : '']"
-
         >
           {{ answer }}
         </b-list-group-item>
       </b-list-group>
 
-      <b-button variant="primary" href="#">Submit</b-button>
+      <b-button
+              variant="primary"
+              @click="submitAnswer"
+
+      >
+        Submit
+      </b-button>
       <b-button @click="next" variant="success" href="#">Next</b-button>
     </b-jumbotron>
   </div>
@@ -32,7 +37,8 @@
     name: "QuestionBox",
     props: {
       currentQuestion: Object,
-      next: Function
+      next: Function,
+      increment: Function
     },
     data() {
       return {
@@ -48,9 +54,12 @@
       }
     },
     watch: {
-      currentQuestion() {
-        this.selectedIndex = null
-        this.shuffleAnswers()
+      currentQuestion: {
+        immediate: true,
+        handler(){
+          this.selectedIndex = null
+          this.shuffleAnswers()
+        }
       }
     },
     methods: {
@@ -60,6 +69,14 @@
       shuffleAnswers() {
         let answers = [...this.currentQuestion.incorrect_answers, this.currentQuestion.correct_answer]
         this.shuffledAnswers = _.shuffle(answers)
+      },
+      submitAnswer() {
+        let isCorrect = false
+
+        if(this.selectedIndex === this.crrectIndex) {
+          isCorrect = true
+        }
+        this.increment(isCorrect)
       }
     },
     mounted() {
