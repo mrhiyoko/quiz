@@ -45,8 +45,8 @@
       increment(isCorrect) {
         if(isCorrect) {
           this.numCorrect++
-          this.numTotal++
         }
+        this.numTotal++
       }
     },
     mounted: function () {
